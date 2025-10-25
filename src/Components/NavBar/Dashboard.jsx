@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import Header from './Header';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../Context/AuthContext';
 import Vector1 from '../../assets/Icons/Vector1.png';
 import Vector2 from '../../assets/Icons/Vector2.png';
 import Vector4 from '../../assets/Icons/Vector4.png';
@@ -9,6 +10,21 @@ import DashImg from '../../assets/Dash.png';
 
 const Dashboard = () => {
   const navigate = useNavigate();
+  const { isAuthenticated, loading } = useContext(AuthContext);
+
+  useEffect(() => {
+    if (!loading && !isAuthenticated) {
+      navigate('/login'); // redirect to login if not authenticated
+    }
+  }, [isAuthenticated, loading, navigate]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-[#022535] text-white">
+        Loading...
+      </div>
+    );
+  }
 
   return (
     <div className="w-full min-h-screen bg-[#022535] pt-[250px]">
@@ -21,7 +37,7 @@ const Dashboard = () => {
                 <img src={Vector1} alt="vector1"/>
               </div>
               <div className='col-span-2'>
-                <p className='text-lg text-[#F0F6DF]'>Mark Attendence</p>
+                <p className='text-lg text-[#F0F6DF]'>Mark Attendance</p>
                 <p className='text-[#F0F6DF] text-sm'>Biometric system that automatically identifies individuals.</p>
               </div>
             </button>
@@ -30,7 +46,7 @@ const Dashboard = () => {
                 <img src={Vector2} alt="vector2"/>
               </div>
               <div className='col-span-2'>
-                <p className='text-lg text-[#F0F6DF]'>Attendence Calender</p>
+                <p className='text-lg text-[#F0F6DF]'>Attendance Calendar</p>
                 <p className='text-[#F0F6DF] text-sm'>View your attendance for the current month.</p>
               </div>
             </button>

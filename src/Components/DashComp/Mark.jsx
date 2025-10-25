@@ -9,7 +9,7 @@ const Mark = () => {
   const { isAuthenticated, loading, token } = useContext(AuthContext)
   const navigate = useNavigate()
 
-  const [user, setUser] = useState("")
+  const [user, setUser] = useState({})
   const [img, setImg] = useState("")
   const [result, setResult] = useState("")
   const webRef = useRef("")
@@ -24,10 +24,10 @@ const Mark = () => {
     const fetchUser = async () => {
       if (!token) return
       try {
-        const res = await axios.get("https://vishimark-b.onrender.com/api/user", {
+        const res = await axios.get("https://vishimark-b.onrender.com/auth/me", {
           headers: { Authorization: `Bearer ${token}` }
         })
-        setUser(res.data)
+        setUser(res.data.data || res.data) 
       } catch (err) {
         console.error("Failed to fetch user:", err)
       }
@@ -73,7 +73,7 @@ const Mark = () => {
     <div className="w-full min-h-screen bg-[#022535] pt-[150px] overflow-x-hidden">
       <Header/>
       <main className="flex flex-col gap-16 p-24">
-        <h1 className='text-[#AEC3B1] text-4xl font-semibold p-4 text-left'>Mark Attendence</h1>
+        <h1 className='text-[#AEC3B1] text-4xl font-semibold p-4 text-left'>Mark Attendance</h1>
         <div className='flex flex-row items-center justify-between border border-[#F0F6DF] gap-15 p-10'>
           <div className='flex flex-row items-center justify-center text-left text-2xl font-sans gap-16'>
             <div className='flex flex-col'>
@@ -96,7 +96,7 @@ const Mark = () => {
                   <h3 className='text-[black]'>Name:</h3>
                   <h3 className='text-[black]'>User ID:</h3>
                   <h3 className='text-[black]'>Date:</h3>
-                  <h3 className='text-[black]'>Attendence marked:</h3>
+                  <h3 className='text-[black]'>Attendance marked:</h3>
                 </div>
                 <div>
                   <h3 className='text-[#022535]'>{user.name || 'User'}</h3>
@@ -110,7 +110,7 @@ const Mark = () => {
                   <h3 className='text-[black]'>Total Days</h3>
                   <h3 className='text-[black]'>Present:</h3>
                   <h3 className='text-[black]'>Absent:</h3>
-                  <h3 className='text-[black]'>Current Day Attendence:</h3>
+                  <h3 className='text-[black]'>Current Day Attendance:</h3>
                 </div>
                 <div>
                   <h3 className='text-[#022535]'>50</h3>

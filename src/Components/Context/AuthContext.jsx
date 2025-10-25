@@ -1,4 +1,5 @@
 import React, { createContext, useState, useEffect } from "react";
+import axios from "axios";
 
 export const AuthContext = createContext();
 
@@ -17,15 +18,12 @@ const AuthProvider = ({ children }) => {
 
   const fetchUserData = async (jwt) => {
     try {
-      const res = await fetch("http://localhost:5000/api/auth/me", {
-        headers: { Authorization: `Bearer ${jwt}` },
-      });
-      const data = await res.json();
-      if (res.ok) {
-        setUser(data);
-      } else {
-        logout();
-      }
+      setLoading(true);
+      const res = await axios.get(
+        "https://vishimark-b.onrender.com/auth/me",
+        { headers: { Authorization: `Bearer ${jwt}` } }
+      );
+      setUser(res.data);
     } catch (err) {
       console.error("Error fetching user:", err);
       logout();
@@ -49,7 +47,7 @@ const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider value={{ user, token, login, logout, isAuthenticated, loading }}>
-      {!loading && children}
+      {children}
     </AuthContext.Provider>
   );
 };

@@ -5,7 +5,13 @@ import { AuthContext } from "../Context/AuthContext";
 const ProtectedRoute = ({ children }) => {
   const { isAuthenticated, loading } = useContext(AuthContext);
 
-  if (loading) return null; // or a loader/spinner if you prefer
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center text-white bg-[#072c3d]">
+        Loading...
+      </div>
+    );
+  }
 
   return isAuthenticated ? children : <Navigate to="/login" replace />;
 };

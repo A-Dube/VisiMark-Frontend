@@ -84,7 +84,7 @@ const Header = () => {
 
         <div className="flex flex-col items-center text-center mt-8 w-full">
           <h3 className="font-sans text-2xl font-semibold text-white mb-6">
-            Welcome User, What can we help you with?
+            Welcome, What can we help you with?
           </h3>
           <div className="relative w-full max-w-3xl">
             <input

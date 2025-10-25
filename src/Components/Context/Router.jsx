@@ -15,14 +15,7 @@ import Attendcal from "../DashComp/Attendcal"
 
 
 export const router = createBrowserRouter([
-    
-    {path: "/", element: <App/>},
-    {path: "/login", element: <Login/>},
-    {path: "/ulogin", element: <ULogin/>},
-    {path: "/alogin", element: <ALogin/>},
-    {path: "/signup", element: <Signup/>},
-    
-
+  
     { path: "/", element: <App /> },
   { path: "/login", element: <Login /> },
   { path: "/ulogin", element: <ULogin /> },
