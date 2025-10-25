@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from "react-router-dom"
 
+import Logo from '../../assets/Logo.png'
+import Banner from '../../assets/Attendence_Banner.png'
+
 const Header = () => {
   const [query, setQuery] = useState('')
   const [filtered, setFiltered] = useState([])
@@ -36,7 +39,7 @@ const Header = () => {
   return (
     <header className="absolute top-0 w-full h-64 text-white overflow-hidden">
       <img
-        src="src/assets/Attendence_Banner.png"
+        src={Banner}
         alt="Banner"
         className="absolute inset-0 w-full h-full object-cover"
       />
@@ -44,7 +47,7 @@ const Header = () => {
       <div className="relative z-10 w-full px-10 py-6">
         <div className="flex flex-wrap items-center justify-between">
           <div className="flex items-center gap-3">
-            <img src="src/assets/Logo.png" alt="Logo" className="w-12 h-12 rounded-full" />
+            <img src={Logo} alt="Logo" className="w-12 h-12 rounded-full" />
             <h3 className="text-2xl font-sans text-[#F0F6DF] border-e-4 border-white pe-6">VisiMark</h3>
             <nav className="hidden md:flex items-center gap-8 text-base font-medium">
               {pages.slice(0, 3).map((page, i) => (
@@ -59,8 +62,8 @@ const Header = () => {
               <Link to="/login" className="hover:text-[#F0F6DF] transition border-b-2 border-transparent hover:border-white">Logout</Link>
             </nav>
           </div>
+
           <div className="flex items-center gap-10">
-            
             <div className="flex items-center gap-4">
               <div className="relative">
                 <Link to="/notice">
@@ -78,34 +81,34 @@ const Header = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col items-center text-center mt-8 w-full">
-        <h3 className="font-sans text-2xl font-semibold text-white mb-6">
-          Welcome User, What can we help you with?
-        </h3>
-        <div className="relative w-full max-w-3xl">
-          <input
-          type="text"
-          placeholder="Find help, services and solutions"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          className="w-full px-5 py-3 rounded-full text-gray-700 placeholder-gray-400 shadow-md outline-none focus:ring-2 focus:ring-blue-400"
-          />
-          {filtered.length > 0 && (
-          <ul className="absolute top-full left-0 w-full bg-white text-black rounded-xl mt-2 shadow-lg max-h-56 overflow-y-auto z-50">
-            {filtered.map((item, index) => (
-            <li
-              key={index}
-              className="px-4 py-2 hover:bg-gray-200 cursor-pointer"
-              onClick={() => handleSelect(item.path)}
-            >
-            {item.name}
-            </li>
-            ))}
-          </ul>
-          )}
-        </div>
-      </div>
 
+        <div className="flex flex-col items-center text-center mt-8 w-full">
+          <h3 className="font-sans text-2xl font-semibold text-white mb-6">
+            Welcome User, What can we help you with?
+          </h3>
+          <div className="relative w-full max-w-3xl">
+            <input
+              type="text"
+              placeholder="Find help, services and solutions"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              className="w-full px-5 py-3 rounded-full text-gray-700 placeholder-gray-400 shadow-md outline-none focus:ring-2 focus:ring-blue-400"
+            />
+            {filtered.length > 0 && (
+              <ul className="absolute top-full left-0 w-full bg-white text-black rounded-xl mt-2 shadow-lg max-h-56 overflow-y-auto z-50">
+                {filtered.map((item, index) => (
+                  <li
+                    key={index}
+                    className="px-4 py-2 hover:bg-gray-200 cursor-pointer"
+                    onClick={() => handleSelect(item.path)}
+                  >
+                    {item.name}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </div>
       </div>
     </header>
   )

@@ -1,11 +1,11 @@
 import React from 'react';
 import Header from './Header';
 import { useNavigate } from 'react-router-dom';
-import Vector1 from '../assets/Icons/Vector1.png';
-import Vector2 from '../assets/Icons/Vector2.png';
-import Vector4 from '../assets/Icons/Vector4.png';
-import Vector5 from '../assets/Icons/Vector5.png';
-import DashImg from '../assets/Dash.png';
+import Vector1 from '../../assets/Icons/Vector1.png';
+import Vector2 from '../../assets/Icons/Vector2.png';
+import Vector4 from '../../assets/Icons/Vector4.png';
+import Vector5 from '../../assets/Icons/Vector5.png';
+import DashImg from '../../assets/Dash.png';
 
 const Dashboard = () => {
   const navigate = useNavigate();
