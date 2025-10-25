@@ -24,7 +24,7 @@ const Mark = () => {
     const fetchUser = async () => {
       if (!token) return
       try {
-        const res = await axios.get('http://10.120.167.114:5000/api/user', {
+        const res = await axios.get("https://vishimark-b.onrender.com/api/user", {
           headers: { Authorization: `Bearer ${token}` }
         })
         setUser(res.data)
@@ -38,17 +38,26 @@ const Mark = () => {
   const captureAndSend = async () => {
     const imageSrc = webRef.current.getScreenshot()
     setImg(imageSrc)
+
     const blob = await fetch(imageSrc).then(r => r.blob())
     const formData = new FormData()
-    formData.append('image', blob, 'capture.jpg')
+    formData.append("image", blob, "capture.jpg")
+
     try {
-      const res = await axios.post('http://10.120.167.114:5000/api/verify', formData, {
-        headers: { Authorization: `Bearer ${token}` }
-      })
-      setResult(res.data.matched ? 'Matched ✅' : 'Not Matched ❌')
+      const res = await axios.post(
+        "https://vishimark-b.onrender.com/attendance/mark",
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      )
+      setResult(res.data.message || "Attendance marked ✅")
     } catch (err) {
       console.error("Verification failed:", err)
-      setResult('Error ❌')
+      setResult("Error ❌")
     }
   }
 
