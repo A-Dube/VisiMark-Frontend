@@ -11,6 +11,9 @@ function Statistics() {
   const [totalUserAttendance, setTotalUserAttendance] = useState(0);
 
   useEffect(() => {
+    if (!loading && !isAuthenticated) {
+      navigate("/login");
+    }
   }, [isAuthenticated, loading, navigate]);
 
   useEffect(() => {
@@ -24,7 +27,7 @@ function Statistics() {
       });
       const data = await res.json();
       if (res.ok) {
-        setAttendanceData(data.monthly); // assuming backend returns monthly array with { label, classAttendance, userAttendance }
+        setAttendanceData(data.monthly);
         setTotalClasses(data.totalClasses);
         setTotalUserAttendance(data.totalUserAttendance);
       } else {
