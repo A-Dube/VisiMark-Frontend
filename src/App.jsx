@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import './App.css'
-import Dashboard from './Components/NavBar/Dashboard.jsx'
+import Login from './Components/LoginComp/Login.jsx'
 
 function App() {
   return (
     <>
-      <Dashboard />
+      <Login />
     </>
   )
 }
