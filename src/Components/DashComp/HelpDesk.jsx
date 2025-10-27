@@ -14,11 +14,6 @@ const HelpDesk = () => {
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState(null);
 
-  useEffect(() => {
-    if (!loading && !isAuthenticated) {
-      navigate('/login');
-    }
-  }, [isAuthenticated, loading, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

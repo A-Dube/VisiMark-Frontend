@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import Header from './Header';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Context/AuthContext';
@@ -10,13 +10,7 @@ import DashImg from '../../assets/Dash.png';
 
 const Dashboard = () => {
   const navigate = useNavigate();
-  const { isAuthenticated, loading } = useContext(AuthContext);
-
-  useEffect(() => {
-    if (!loading && !isAuthenticated) {
-      navigate('/login'); // redirect to login if not authenticated
-    }
-  }, [isAuthenticated, loading, navigate]);
+  const { user, loading } = useContext(AuthContext);
 
   if (loading) {
     return (
@@ -25,6 +19,7 @@ const Dashboard = () => {
       </div>
     );
   }
+
 
   return (
     <div className="w-full min-h-screen bg-[#022535] pt-[250px]">

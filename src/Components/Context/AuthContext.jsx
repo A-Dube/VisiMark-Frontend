@@ -46,7 +46,9 @@ const AuthProvider = ({ children }) => {
   const isAuthenticated = Boolean(token);
 
   return (
-    <AuthContext.Provider value={{ user, token, login, logout, isAuthenticated, loading }}>
+    <AuthContext.Provider
+      value={{ user, token, login, logout, isAuthenticated, loading }}
+    >
       {children}
     </AuthContext.Provider>
   );

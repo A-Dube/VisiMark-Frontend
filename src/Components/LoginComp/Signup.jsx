@@ -24,35 +24,34 @@ const Signup = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append("name", name);
-    formData.append("email", email);
-    formData.append("password", password);
-    formData.append("userID", userID);
-    formData.append("contact", contact);
-    if (imageFile) formData.append("image", imageFile);
+  e.preventDefault();
+  const formData = new FormData();
+  formData.append("name", name);
+  formData.append("email", email);
+  formData.append("password", password);
+  formData.append("userID", userID);
+  formData.append("contact", contact);
+  if (imageFile) formData.append("image", imageFile);
 
-    try {
-      const response = await axios.post(
-        "https://vishimark-b.onrender.com/auth/signup",
-        formData,
-        {
-          headers: { "Content-Type": "multipart/form-data" },
-        }
-      );
-      const data = response.data;
-      if (response.status === 200) {
-        login(data.token);
-        navigate("/dashboard");
-      } else {
-        alert(data.message || "Signup failed");
-      }
-    } catch (err) {
-      console.error(err);
-      alert("Signup failed. Try again.");
+  try {
+    const response = await axios.post(
+      "https://vishimark-b.onrender.com/auth/signup",
+      formData,
+      { headers: { "Content-Type": "multipart/form-data" } }
+    );
+    const data = response.data;
+    if (response.status === 201) {
+      login(data.token);
+      navigate("/dashboard");
+    } else {
+      alert(data.message || "Signup failed");
     }
-  };
+  } catch (err) {
+    console.error(err);
+    alert("Signup failed. Try again.");
+  }
+};
+
 
   return (
     <div className="relative w-full min-h-screen flex items-center justify-center bg-gradient-to-tl from-[#12232D] via-[#476C7B] to-[#b1cab8] bg-[length:200%_200%] animate-[gradientMove_5s_ease_infinite] overflow-auto">

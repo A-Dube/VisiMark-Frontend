@@ -6,34 +6,13 @@ import { AuthContext } from '../Context/AuthContext'
 import { useNavigate } from 'react-router-dom'
 
 const Mark = () => {
-  const { isAuthenticated, loading, token } = useContext(AuthContext)
+  const { token, loading, user: authUser } = useContext(AuthContext)
   const navigate = useNavigate()
 
-  const [user, setUser] = useState({})
   const [img, setImg] = useState("")
   const [result, setResult] = useState("")
   const webRef = useRef("")
 
-  useEffect(() => {
-    if (!loading && !isAuthenticated) {
-      navigate("/login")
-    }
-  }, [isAuthenticated, loading, navigate])
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      if (!token) return
-      try {
-        const res = await axios.get("https://vishimark-b.onrender.com/auth/me", {
-          headers: { Authorization: `Bearer ${token}` }
-        })
-        setUser(res.data.data || res.data) 
-      } catch (err) {
-        console.error("Failed to fetch user:", err)
-      }
-    }
-    fetchUser()
-  }, [token])
 
   const captureAndSend = async () => {
     const imageSrc = webRef.current.getScreenshot()
@@ -61,7 +40,7 @@ const Mark = () => {
     }
   }
 
-  if (loading) {
+  if (loading || !authUser) {
     return (
       <div className="w-full min-h-screen flex items-center justify-center bg-[#022535] text-white">
         Loading...
@@ -99,8 +78,8 @@ const Mark = () => {
                   <h3 className='text-[black]'>Attendance marked:</h3>
                 </div>
                 <div>
-                  <h3 className='text-[#022535]'>{user.name || 'User'}</h3>
-                  <h3 className='text-[#022535]'>{user.userId || '1234ID'}</h3>
+                  <h3 className='text-[#022535]'>{authUser.name || 'User'}</h3>
+                  <h3 className='text-[#022535]'>{authUser.userId || '1234ID'}</h3>
                   <h3 className='text-[#022535]'>{new Date().toLocaleDateString()}</h3>
                   <h3 className='text-[#022535]'>{result ? 'Yes' : 'No'}</h3>
                 </div>
