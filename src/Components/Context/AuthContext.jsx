@@ -9,20 +9,16 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (token) {
-      fetchUserData(token);
-    } else {
-      setLoading(false);
-    }
+    if (token) fetchUserData(token);
+    else setLoading(false);
   }, [token]);
 
   const fetchUserData = async (jwt) => {
     try {
       setLoading(true);
-      const res = await axios.get(
-        "https://vishimark-b.onrender.com/auth/me",
-        { headers: { Authorization: `Bearer ${jwt}` } }
-      );
+      const res = await axios.get("https://vishimark-b.onrender.com/auth/me", {
+        headers: { Authorization: `Bearer ${jwt}` },
+      });
       setUser(res.data);
     } catch (err) {
       console.error("Error fetching user:", err);

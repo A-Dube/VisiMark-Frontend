@@ -20,27 +20,29 @@ const ULogin = () => {
   }
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    try {
-      const res = await axios.post(
-        "https://vishimark-b.onrender.com/auth/login",
-        { email, password },
-        { headers: { "Content-Type": "application/json" } }
-      );
-      const data = res.data;
-      if (res.status === 200 && data.token) {
-        await login(data.token);
-        toast.success("Login successful!", { position: "top-center" });
-        navigate("/dashboard");
-      }
-    } catch (err) {
-      console.error(err);
-      toast.error("Incorrect email or password!", { position: "top-center" });
-    } finally {
-      setLoading(false);
+  e.preventDefault();
+  setLoading(true);
+  try {
+    const res = await axios.post(
+      "https://vishimark-b.onrender.com/auth/login",
+      { email, password }
+    );
+    const data = res.data;
+    console.log(data);
+
+    if (res.status === 200 && data.token) {
+      localStorage.setItem("token", data.token);
+      await login(data.token);
+      toast.success("Login successful!", { position: "top-center" });
+      navigate("/dashboard");
     }
-  };
+  } catch (err) {
+    console.error(err);
+    toast.error("Incorrect email or password!", { position: "top-center" });
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="relative w-full min-h-screen flex items-center justify-center bg-gradient-to-tl from-[#12232D] via-[#476C7B] to-[#b1cab8] overflow-auto">
