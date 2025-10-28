@@ -29,6 +29,8 @@ const ULogin = () => {
     );
     const data = res.data;
     console.log(data);
+    console.log("TOKEN SENT TO LOGIN:", data.token);
+
 
     if (res.status === 200 && data.token) {
       localStorage.setItem("token", data.token);
