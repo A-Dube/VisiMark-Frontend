@@ -22,7 +22,7 @@ const Login = () => {
           style={{ backgroundSize: '400% 400%', animation: 'gradientMove 8s ease infinite' }}
         ></div>
         <div className="relative z-10 flex items-center justify-center min-h-screen">
-          <div className="flex w-96 overflow-hidden">
+          <div className="flex w-72 overflow-hidden">
             <img src={Logo1} alt="Logo1" className="w-full h-auto" />
           </div>
 

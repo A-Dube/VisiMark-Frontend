@@ -39,7 +39,7 @@ const AuthProvider = ({ children }) => {
     setUser(null);
   };
 
-  const isAuthenticated = Boolean(user);
+  const isAuthenticated = Boolean(User);
 
   return (
     <AuthContext.Provider
