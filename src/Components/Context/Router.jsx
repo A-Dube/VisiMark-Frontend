@@ -19,7 +19,7 @@ export const router = createBrowserRouter([
   { path: "/alogin", element: <ALogin /> },
   { path: "/signup", element: <Signup /> },
 
-  { path: "/dashboard", element: <ProtectedRoute><Dashboard /></ProtectedRoute> },
+  { path: "/dashboard", element: <Dashboard /> },
   { path: "/mark", element: <ProtectedRoute><Mark /></ProtectedRoute> },
   { path: "/notice", element: <ProtectedRoute><Notice /></ProtectedRoute> },
   { path: "/helpdesk", element: <ProtectedRoute><HelpDesk /></ProtectedRoute> },
