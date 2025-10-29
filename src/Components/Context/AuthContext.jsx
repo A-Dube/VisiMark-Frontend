@@ -14,6 +14,7 @@ const AuthProvider = ({ children }) => {
   }, [token]);
 
   const fetchUserData = async (jwt) => {
+    console.log(jwt,"tooken")
     try {
       setLoading(true);
       const res = await axios.get("https://vishimark-b.onrender.com/auth/me", {

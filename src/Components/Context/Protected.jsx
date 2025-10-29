@@ -12,7 +12,7 @@ const ProtectedRoute = ({ children }) => {
       </div>
     );
   }
-
+  console.log(isAuthenticated, "Flask")
   return isAuthenticated ? children : <Navigate to="/login" replace />;
 };
 

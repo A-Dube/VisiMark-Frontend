@@ -23,7 +23,7 @@ const Mark = () => {
 
     try {
       const res = await axios.post(
-        "https://vishimark-b.onrender.com/attendance/mark",
+        "https://vishimark-b.onrender.com/auth/login",
         formData,
         {
           headers: {
