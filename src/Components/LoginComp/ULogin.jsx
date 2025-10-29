@@ -15,7 +15,6 @@ const ULogin = () => {
   const [password, setPassword] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
-  // ⚠️ Wait for loading to finish before redirect
   if (!loading && isAuthenticated) {
     return <Navigate to="/dashboard" replace />;
   }

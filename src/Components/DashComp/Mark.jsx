@@ -1,9 +1,10 @@
 import React, { useEffect, useState, useContext, useRef } from 'react'
 import Header from '../NavBar/Header'
 import Webcam from 'react-webcam'
-import axios from 'axios';
+import axios from 'axios'
 import { AuthContext } from '../Context/AuthContext'
 import { useNavigate } from 'react-router-dom'
+import markImg from '../../assets/Mark.png'
 
 const Mark = () => {
   const { token, loading, user: authUser } = useContext(AuthContext)
@@ -13,11 +14,9 @@ const Mark = () => {
   const [result, setResult] = useState("")
   const webRef = useRef("")
 
-
   const captureAndSend = async () => {
     const imageSrc = webRef.current.getScreenshot()
     setImg(imageSrc)
-
     const blob = await fetch(imageSrc).then(r => r.blob())
     const formData = new FormData()
     formData.append("image", blob, "capture.jpg")
@@ -100,7 +99,7 @@ const Mark = () => {
               </div>
             </div>
           </div>
-          <img src="src\\assets\\Mark.png" alt="img" className='w-96 h-96' />
+          <img src={markImg} alt="img" className='w-96 h-96' />
         </div>
       </main>
     </div>
