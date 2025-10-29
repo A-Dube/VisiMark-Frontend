@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 import LogoImg from '../../assets/Logo.png';
 import UserImg from '../../assets/user.png';
 
-const User = () => {
   const User = () => {
   const { isAuthenticated, loading, user } = useContext(AuthContext);
 
