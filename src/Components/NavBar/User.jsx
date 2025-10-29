@@ -7,30 +7,21 @@ import LogoImg from '../../assets/Logo.png';
 import UserImg from '../../assets/user.png';
 
 const User = () => {
-  const { isAuthenticated, loading, token, user: authUser } = useContext(AuthContext);
-  const navigate = useNavigate();
-  const [user, setUser] = useState("");
-
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      if (!token) return;
-      try {
-        const res = await axios.get('https://vishimark-b.onrender.com/api/user', {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        setUser(res.data);
-      } catch (err) {
-        console.error("Failed to fetch user:", err);
-      }
-    }
-    fetchUser();
-  }, [token]);
+  const User = () => {
+  const { isAuthenticated, loading, user } = useContext(AuthContext);
 
   if (loading) {
     return (
       <div className="w-full min-h-screen flex items-center justify-center bg-[#022535] text-white">
         Loading...
+      </div>
+    );
+  }
+
+  if (!isAuthenticated) {
+    return (
+      <div className="w-full min-h-screen flex items-center justify-center bg-[#022535] text-white">
+        Not authenticated
       </div>
     );
   }

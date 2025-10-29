@@ -54,12 +54,12 @@ const Header = () => {
                 <Link
                   key={i}
                   to={page.path}
-                  className="hover:text-[#F0F6DF] transition border-b-2 border-transparent hover:border-white"
+                  className="text-white transition border-b-2 border-transparent hover:border-white"
                 >
                   {page.name}
                 </Link>
               ))}
-              <Link to="/login" className="hover:text-[#F0F6DF] transition border-b-2 border-transparent hover:border-white">Logout</Link>
+              <Link to="/login" className="text-white transition border-b-2 border-transparent hover:border-white">Logout</Link>
             </nav>
           </div>
 
