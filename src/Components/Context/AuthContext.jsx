@@ -19,7 +19,7 @@ const AuthProvider = ({ children }) => {
       const res = await axios.get("https://vishimark-b.onrender.com/auth/me", {
         headers: { Authorization: `Bearer ${jwt}` },
       });
-      setUser(res.data);
+      setUser(res.data.user);
     } catch (err) {
       console.error("Error fetching user:", err);
       logout();
@@ -39,7 +39,7 @@ const AuthProvider = ({ children }) => {
     setUser(null);
   };
 
-  const isAuthenticated = Boolean(token);
+  const isAuthenticated = Boolean(user);
 
   return (
     <AuthContext.Provider
