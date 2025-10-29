@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import markImg from '../../assets/Mark.png'
 
 const Mark = () => {
-  const { token, loading, user: authUser } = useContext(AuthContext)
+  const { token, loading, user } = useContext(AuthContext)
   const navigate = useNavigate()
 
   const [img, setImg] = useState("")
@@ -77,8 +77,8 @@ const Mark = () => {
                   <h3 className='text-[black]'>Attendance marked:</h3>
                 </div>
                 <div>
-                  <h3 className='text-[#022535]'>{authUser.name || 'User'}</h3>
-                  <h3 className='text-[#022535]'>{authUser.userId || '1234ID'}</h3>
+                  <h3 className='text-[#022535]'>{user.name || 'User'}</h3>
+                  <h3 className='text-[#022535]'>{user.userId || '1234ID'}</h3>
                   <h3 className='text-[#022535]'>{new Date().toLocaleDateString()}</h3>
                   <h3 className='text-[#022535]'>{result ? 'Yes' : 'No'}</h3>
                 </div>
