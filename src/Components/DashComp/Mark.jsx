@@ -22,7 +22,7 @@ const Mark = () => {
     formData.append("image", blob, "capture.jpg")
 
     try {
-      const res = await axios.post(
+      const res = await axios.get(
         "https://vishimark-b.onrender.com/auth/login",
         formData,
         {
@@ -77,8 +77,8 @@ const Mark = () => {
                   <h3 className='text-[black]'>Attendance marked:</h3>
                 </div>
                 <div>
-                  <h3 className='text-[#022535]'>{user.name || 'User'}</h3>
-                  <h3 className='text-[#022535]'>{user.userId || '1234ID'}</h3>
+                  <h3 className='text-[#022535]'>{user.name}</h3>
+                  <h3 className='text-[#022535]'>{user.userID}</h3>
                   <h3 className='text-[#022535]'>{new Date().toLocaleDateString()}</h3>
                   <h3 className='text-[#022535]'>{result ? 'Yes' : 'No'}</h3>
                 </div>
