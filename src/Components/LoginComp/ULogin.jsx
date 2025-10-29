@@ -19,6 +19,10 @@ const ULogin = () => {
     return <Navigate to="/dashboard" replace />;
   }
 
+  useEffect(() => {
+    if (token) localStorage.setItem("token", token)
+  }, [token])
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitting(true);
@@ -30,8 +34,7 @@ const ULogin = () => {
       const data = res.data;
 
       if (res.status === 200 && data.token) {
-        localStorage.setItem("token", data.token);
-        await login(data.token);
+        login(data.token);
         toast.success("Login successful!", { position: "top-center" });
         navigate("/dashboard");
       }
