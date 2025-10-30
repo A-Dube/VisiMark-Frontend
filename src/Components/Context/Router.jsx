@@ -11,10 +11,12 @@ import Dashboard from "../NavBar/Dashboard";
 import Mark from "../DashComp/Mark";
 import Notice from "../DashComp/Notice";
 import Attendcal from "../DashComp/Attendcal";
+import Landing from "../Landing";
 
 export const router = createBrowserRouter([
-  { path: "/", element: <Navigate to="/dashboard" /> },
+  { path: "/", element: <Navigate to="/login" /> },
   { path: "/login", element: <Login /> },
+  { path: "/landing", element: <Landing /> },
   { path: "/ulogin", element: <ULogin /> },
   { path: "/alogin", element: <ALogin /> },
   { path: "/signup", element: <Signup /> },

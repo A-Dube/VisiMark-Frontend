@@ -24,7 +24,7 @@ import UserImg from '../../assets/user.png';
       </div>
     );
   }
-
+console.log("User context data:", user);
   return (
     <div className="w-full min-h-screen bg-[#022535] pt-[250px]">
       <Header/>
